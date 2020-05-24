@@ -30,7 +30,8 @@ class state{
 		std::map<int, int> get_reward();
 		int get_state_number();
 		float get_value();
-		std::vector<char> get_action();	
+		std::vector<char> get_action();
+		void to_string();	
 };
 
 #endif
