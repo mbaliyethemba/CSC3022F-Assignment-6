@@ -19,6 +19,6 @@ class state{
 	
 	public:
 		state();
-}
+};
 
 #endif
