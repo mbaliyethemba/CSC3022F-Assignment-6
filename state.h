@@ -24,7 +24,13 @@ class state{
 		void set_value(float v);
 		void set_discount(float d);
 		void set_probability(float p);
-		void set_state_number(int s);	
+		void set_state_number(int s);
+		float get_discount();
+		float get_probability();
+		std::map<int, int> get_reward();
+		int get_state_number();
+		float get_value();
+		std::vector<char> get_action();	
 };
 
 #endif
