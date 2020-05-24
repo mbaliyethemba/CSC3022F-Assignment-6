@@ -20,7 +20,11 @@ class state{
 	public:
 		state();
 		~state();
-		state(std::vector<char>, std::map<int,int>, int, int, float, float);
+		state(std::vector<char> a, std::map<int,int> r, int s, int v, float d, float p);
+		void set_value(float v);
+		void set_discount(float d);
+		void set_probability(float p);
+		void set_state_number(int s);	
 };
 
 #endif
