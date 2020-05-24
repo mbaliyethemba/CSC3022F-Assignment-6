@@ -8,6 +8,11 @@
 #include <iostream>
 #include "state.h"
 
+state::state(){
+}
+
+
+
 state::state(std::vector<char> action, std::map<int,int> reward, int val, int state_number, float discount, float probability){
 	this->action = action;
 	this->reward = reward;
