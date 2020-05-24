@@ -20,6 +20,7 @@ class state{
 	public:
 		state();
 		~state();
+		state(std::vector<char>, std::map<int,int>, int, int, float, float);
 };
 
 #endif
