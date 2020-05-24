@@ -40,3 +40,28 @@ void state::set_discount(float discount){
 void state::set_probability(float probability){
 	this->probability = probability;
 }
+
+//get methods for discount, probability, state number, probability, reward, value, action
+float state::get_discount(){
+	return this->discount;
+}
+
+float state::get_probability(){
+	return this->probability;
+}
+
+std::map<int, int> state::get_reward(){
+	return this->reward;
+}
+
+int state::get_state_number(){
+	return this->state_number;
+}
+
+float state::get_value(){
+	return this->val;
+}
+
+std::vector<char> state::get_action(){
+	return this->action;
+}
