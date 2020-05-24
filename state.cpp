@@ -65,3 +65,20 @@ float state::get_value(){
 std::vector<char> state::get_action(){
 	return this->action;
 }
+
+//printing methods
+void state::to_string(){
+	for(size_t i = 0; i < this->action.size(); i++){
+		std::cout << this->action[i] << " " <<'\n';
+	}
+	
+	for(size_t i = 0; i < this->action.size(); i++){
+		std::cout << this->reward[i] << " " << '\n';
+	}
+	
+	std::cout << "Value : " << this->val << std::endl;
+	std::cout << "State Number : " << this->state_number << std::endl;
+	std::cout << "Discount : " << this->discount << std::endl;
+	std::cout << "Probability : " << this->probability << std::endl;
+	
+}
