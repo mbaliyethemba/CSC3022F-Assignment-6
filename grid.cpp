@@ -139,10 +139,14 @@ std::vector<state> grid::optimal_policy(state s){
 							break;
 						}
 					}
+					s = optimal_state(states);
+					optimal_states.push_back(s);
+					states.erase(states.begin(), states.end());
 				}
 			}
 		}
 	}
+	return optimal_states;
 }
 
 state grid::optimal_state(std::vector<state> v){
