@@ -15,3 +15,11 @@ grid::grid(){
 //default destructor
 grid::~grid(){
 }
+
+//constructor
+grid::grid(std::vector<std::vector<state>> v){
+	this->world = v;
+}
+
+
+
