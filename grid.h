@@ -19,5 +19,6 @@ class grid{
 		grid();
 		~grid();
 		grid(std::vector<std::vector<state>> v);
+		void fill();
 };
 #endif
