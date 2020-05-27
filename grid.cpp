@@ -85,5 +85,73 @@ void grid::fill(){
 	}
 }
 
+//print out the iteration
+void grid::printGrid(int num){
+	for(int i = 0; i < num ; i++){
+		
+	}
+}
 
+//optimal policy function
+std::vector<state> grid::optimal_policy(state s){
+	std::vector<state> states, optimal_states;
+	state next_state;
+	optimal_states.push_back(s);
+	this->world[0][2].set_value(FLT_MAX);
+	for(size_t c = 0; c < this->world.size(); c++){
+		for(size_t r = 0; r < this->world[c].size(); r++){
+			if(s.get_state_number() == this->world[c][r].get_state_number()){
+				while(s.get_state_number() != 3){
+					for(char a: s.get_action()){
+						switch(a){
+							case 'u': {
+								next_state = this->world[c-1][r];
+								states.push_back(next_state);
+							}
+							break;
+							
+							case 'd': {
+								next_state = this->world[c+1][r];
+								states.push_back(next_state);
+							}
+							break;
+							
+							case 'l': {
+								next_state = this->world[c][r-1];
+								states.push_back(next_state);
+							}
+							break;
+							
+							case 'r': {
+								next_state = this->world[c][r+1];
+								states.push_back(next_state);
+							}
+							break;
+							
+							case 'i': {
+								next_state = this->world[c][r];
+								states.push_back(next_state);
+							}
+							break;
+							
+							default: {
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
+state grid::optimal_state(std::vector<state> v){
+	state s;
+	for(size_t c = 0; c < v.size(); c++){
+		if(v[c].get_value() > s.get_value()){
+			s.set_value(v[c].get_value());
+			s.set_state_number(v[c].get_state_number());
+		}
+	}
+	return s;
+}
