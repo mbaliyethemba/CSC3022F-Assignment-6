@@ -17,5 +17,6 @@ class grid{
 	
 	public:
 		grid();
+		~grid();
 };
 #endif
