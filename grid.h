@@ -19,6 +19,8 @@ class grid{
 		grid();
 		~grid();
 		grid(std::vector<std::vector<state>> v);
+		bool converge(grid g);
 		void fill();
+		void printGrid(int num);
 };
 #endif
