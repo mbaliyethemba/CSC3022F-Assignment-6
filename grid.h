@@ -22,5 +22,6 @@ class grid{
 		bool converge(grid g);
 		void fill();
 		void printGrid(int num);
+		std::vector<state> optimal_policy(state s);
 };
 #endif
