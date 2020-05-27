@@ -11,3 +11,7 @@
 //default constructor
 grid::grid(){
 }
+
+//default destructor
+grid::~grid(){
+}
