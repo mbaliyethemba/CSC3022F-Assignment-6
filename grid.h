@@ -18,5 +18,6 @@ class grid{
 	public:
 		grid();
 		~grid();
+		grid(std::vector<std::vector<state>> v);
 };
 #endif
