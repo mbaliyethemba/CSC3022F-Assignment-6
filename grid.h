@@ -23,5 +23,6 @@ class grid{
 		void fill();
 		void printGrid(int num);
 		std::vector<state> optimal_policy(state s);
+		state optimal_state(std::vector<state> v);
 };
 #endif
