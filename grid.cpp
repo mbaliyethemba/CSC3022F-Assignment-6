@@ -41,6 +41,48 @@ void grid::fill(){
 	g.world = {{s,s,s},{s,s,s}};
 	a.world = g.world;
 	int itr = 0;
+	while(this->converge(g) == 0){
+		for(size_t c = 0; c < this->world.size(); c++){
+			for(size_t r = 0; r <this->world[c].size(); r++){
+				state next;
+				for(char b: this->world[c][r].get_action()){
+					switch(b){
+						case 'u':{
+							next = this->world[c-1][r];
+							this->world[c][r].set_value(std::max(this->world[c][r].get_value(), this->world[c][r].get_reward()[next.get_state_number()] + this->world[c][r].get_discount()*next.get_value()));
+						}
+						break;
+						
+						case 'd':{
+							next = this->world[c+1][r];
+							this->world[c][r].set_value(std::max(this->world[c][r].get_value(), this->world[c][r].get_reward()[next.get_state_number()] + this->world[c][r].get_discount()*next.get_value()));
+						}
+						break;
+						
+						case 'l':{
+							next = this->world[c][r-1];
+							this->world[c][r].set_value(std::max(this->world[c][r].get_value(), this->world[c][r].get_reward()[next.get_state_number()] + this->world[c][r].get_discount()*next.get_value()));
+						}
+						break;
+						
+						case 'r':{
+							next = this->world[c][r+1];
+							this->world[c][r].set_value(std::max(this->world[c][r].get_value(), this->world[c][r].get_reward()[next.get_state_number()] + this->world[c][r].get_discount()*next.get_value()));
+						}
+						break;
+						
+						default:{
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		g.world = a.world;
+		a.world = this->world;
+		itr++;
+	}
 }
 
 
