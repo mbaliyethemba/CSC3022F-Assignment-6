@@ -92,6 +92,16 @@ void grid::printGrid(int num){
 	}
 }
 
+//print the grid function
+void grid::to_string(){
+	for(size_t i = 0; i < this->world.size(); i++){
+		for(size_t j = 0; j < this->world[i].size(); j++){
+			std::cout << "s" << this->world[i][j].get_state_number() << " : " << this->world[i][j].get_value() << " | ";
+		}
+		std::cout << '\n';
+	}
+}
+
 //optimal policy function
 std::vector<state> grid::optimal_policy(state s){
 	std::vector<state> states, optimal_states;
