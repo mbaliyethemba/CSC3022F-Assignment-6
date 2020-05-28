@@ -24,5 +24,6 @@ class grid{
 		void printGrid(int num);
 		std::vector<state> optimal_policy(state s);
 		state optimal_state(std::vector<state> v);
+		void to_string();
 };
 #endif
