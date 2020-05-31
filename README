@@ -1,1 +1,19 @@
+#Assignment 6
+#Mbaliyethemba Shangase
+#1 June 2020
+#SHNMBA004
 
+Files:
+	state.h
+	state.cpp - classes that create the states for the grid for value iteration.
+	grid.h
+	grid.cpp - class that creates the grid for the function of value iteration and optimal policy.
+	driver.cpp - allows the user to interface with the program.
+	Output_Answers.txt - holds the answers to the question given in the assignment document and the output of the program.
+	
+Instructions
+
+	1.Navigate to the project root directory.
+	2.Run make to build the executable, driver.
+	3.Run make run to run the executable.
+	4.Run make clean to delete any artifacts created when compiling & running the program.
