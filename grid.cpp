@@ -83,89 +83,203 @@ void grid::fill(){
 		a.world = this->world;
 		itr++;
 	}
-}
-
-//print out the iteration
-void grid::printGrid(int num){
-	for(int i = 0; i < num ; i++){
-		
-	}
+	itrnum = itr;
+	to_string(itr);
 }
 
 //print the grid function
-void grid::to_string(){
+void grid::to_string(int num){
 	for(size_t i = 0; i < this->world.size(); i++){
 		for(size_t j = 0; j < this->world[i].size(); j++){
 			std::cout << "s" << this->world[i][j].get_state_number() << " : " << this->world[i][j].get_value() << " | ";
 		}
 		std::cout << '\n';
 	}
+	std::cout << "Iterations : " << num << std::endl;
 }
 
 //optimal policy function
-std::vector<state> grid::optimal_policy(state s){
-	std::vector<state> states, optimal_states;
+void grid::optimal_policy(){
+	state s = this->world[0][0];
+	std::vector<char> act = s.get_action();
 	state next_state;
 	optimal_states.push_back(s);
-	this->world[0][2].set_value(FLT_MAX);
-	for(size_t c = 0; c < this->world.size(); c++){
-		for(size_t r = 0; r < this->world[c].size(); r++){
-			if(s.get_state_number() == this->world[c][r].get_state_number()){
-				while(s.get_state_number() != 3){
-					for(char a: s.get_action()){
-						switch(a){
-							case 'u': {
-								next_state = this->world[c-1][r];
-								states.push_back(next_state);
-							}
-							break;
-							
-							case 'd': {
-								next_state = this->world[c+1][r];
-								states.push_back(next_state);
-							}
-							break;
-							
-							case 'l': {
-								next_state = this->world[c][r-1];
-								states.push_back(next_state);
-							}
-							break;
-							
-							case 'r': {
-								next_state = this->world[c][r+1];
-								states.push_back(next_state);
-							}
-							break;
-							
-							case 'i': {
-								next_state = this->world[c][r];
-								states.push_back(next_state);
-							}
-							break;
-							
-							default: {
-							}
-							break;
+	optimal_states_2.push_back(s);
+	for(size_t a = 0; a < act.size() ; a++){
+		switch (act[a]) {
+			case 'r':{
+                next_state=this->world[0][1];
+                optimal_states.push_back(next_state);
+                std::vector<char> act1 = next_state.get_action();
+                std::vector<state> states;
+                state c;
+                for(char b : act1){
+					switch(b){
+						case 'l':{
+							c = this->world[0][0];
+							states.push_back(c);
 						}
+						break;
+						
+						case 'r':{
+							c = this->world[0][2];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'd':{
+							c = this->world[1][1];
+							states.push_back(c);
+						}
+						break;
 					}
-					s = optimal_state(states);
-					optimal_states.push_back(s);
-					states.erase(states.begin(), states.end());
 				}
-			}
+				next_state = optimal_state(states);
+				optimal_states.push_back(next_state);
+				states.erase(states.begin(), states.end());
+				act1.erase(act1.begin(), act1.end());
+				act1 = next_state.get_action();
+				for(char b : act1){
+					switch(b){
+						case 'l':{
+							c = this->world[1][0];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'r':{
+							c = this->world[1][2];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'u':{
+							c = this->world[0][1];
+							states.push_back(c);
+						}
+						break;
+					}
+				}
+				next_state = optimal_state(states);
+				optimal_states.push_back(next_state);
+				states.erase(states.begin(), states.end());
+				act1.erase(act1.begin(), act1.end());
+				act1 = next_state.get_action();
+				switch(act1[0]){
+					case 'u':{
+						next_state = this->world[0][2];
+						optimal_states.push_back(next_state);
+					}
+				}
+				act1.erase(act1.begin(), act1.end());
+				write_optimal(optimal_states);
+              }
+              break;
+              
+            case 'd':{
+                next_state=this->world[1][0];
+                optimal_states_2.push_back(next_state);
+                std::vector<char> act1 = next_state.get_action();
+                std::vector<state> states;
+                state c;
+                for(char b : act1){
+					switch(b){
+						case 'r':{
+							c = this->world[1][1];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'u':{
+							c = this->world[0][0];
+							states.push_back(c);
+						}
+						break;
+					}
+				}
+				next_state = optimal_state(states);
+				optimal_states_2.push_back(next_state);
+				states.erase(states.begin(), states.end());
+				act1.erase(act1.begin(), act1.end());
+				act1 = next_state.get_action();
+				for(char b : act1){
+					switch(b){
+						case 'l':{
+							c = this->world[1][0];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'r':{
+							c = this->world[1][2];
+							states.push_back(c);
+						}
+						break;
+						
+						case 'u':{
+							c = this->world[0][1];
+							states.push_back(c);
+						}
+						break;
+					}
+				}
+				next_state = optimal_state(states);
+				optimal_states_2.push_back(next_state);
+				states.erase(states.begin(), states.end());
+				act1.erase(act1.begin(), act1.end());
+				act1 = next_state.get_action();
+				switch(act1[0]){
+					case 'u':{
+						next_state = this->world[0][2];
+						optimal_states_2.push_back(next_state);
+					}
+				}
+				act1.erase(act1.begin(), act1.end());
+				write_optimal(optimal_states_2);
+              }
+              break; 
 		}
 	}
-	return optimal_states;
 }
 
 state grid::optimal_state(std::vector<state> v){
-	state s;
-	for(size_t c = 0; c < v.size(); c++){
-		if(v[c].get_value() > s.get_value()){
-			s.set_value(v[c].get_value());
-			s.set_state_number(v[c].get_state_number());
-		}
+	return v[v.size()-1];
+}
+
+void grid::write_optimal(std::vector<state> v){
+	for(size_t i = 0; i < v.size()-1 ; i++){
+		std::cout << "s" << v[i].get_state_number() << "->";
 	}
-	return s;
+	std::cout << "s" << v[v.size()-1].get_state_number() << std::endl;
+}
+
+//print out the answers to file
+void grid::printAnswers(){
+	std::ofstream ofs("Output Answers.txt");
+	ofs << "Question 1" << '\n';
+	for(size_t i = 0; i < this->world.size(); i++){
+		for(size_t j = 0; j < this->world[i].size(); j++){
+			ofs << "s" << this->world[i][j].get_state_number() << " : " << this->world[i][j].get_value() << " | ";
+		}
+		ofs << '\n';
+	}
+	ofs << "Iterations : " << itrnum << '\n';
+	ofs << '\n';
+	
+	ofs << "Question 2" << '\n';
+	for(size_t i = 0; i < optimal_states.size()-1 ; i++){
+		ofs << "s" << optimal_states[i].get_state_number() << "->";
+	}
+	ofs << "s" << optimal_states[optimal_states.size()-1].get_state_number() << '\n';
+	ofs << "or" << '\n';
+	for(size_t i = 0; i < optimal_states_2.size()-1 ; i++){
+		ofs << "s" << optimal_states_2[i].get_state_number() << "->";
+	}
+	ofs << "s" << optimal_states_2[optimal_states_2.size()-1].get_state_number() << '\n';
+	ofs << '\n';
+	
+	ofs << "Question 3" << '\n';
+	ofs << "Yes, If we change the immediate reward by multiplying it with a constant factor for example doubling each reward, the V* is also doubled, but π* remains unchanged." << '\n';
+	ofs << "The optimal policy is calculated by the sequence of states with the highest utility." << '\n';
+	ofs << "As long as the changes to the rewards are minor such that the state utility changes but the optimal sequence of states does not change the optimal policy will not change." << '\n';
 }
