@@ -255,7 +255,7 @@ void grid::write_optimal(std::vector<state> v){
 
 //print out the answers to file
 void grid::printAnswers(){
-	std::ofstream ofs("Output Answers.txt");
+	std::ofstream ofs("Output_Answers.txt");
 	ofs << "Question 1" << '\n';
 	for(size_t i = 0; i < this->world.size(); i++){
 		for(size_t j = 0; j < this->world[i].size(); j++){
