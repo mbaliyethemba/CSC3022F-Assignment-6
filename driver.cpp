@@ -6,10 +6,11 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <new>
 #include "grid.h"
 #include "state.h"
 
-int main(int argc, char const *argv[]){
+int main(int argc, char *argv[]){
 	state s1, s2, s3, s4, s5, s6;
 	s1=state({'r','d'},{},0,1,0.8,1.0);
 	s2=state({'l','r','d'},{{3,50}},0,2,0.8,1.0);
@@ -19,5 +20,6 @@ int main(int argc, char const *argv[]){
 	s6=state({'u','l'},{{3,100}},0,6,0.8,1.0);
 	grid g({{s1,s2,s3},{s4,s5,s6}});
 	g.fill();
-	return 0;
+	g.optimal_policy();
+	g.printAnswers();
 }
