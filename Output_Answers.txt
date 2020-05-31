@@ -1,0 +1,14 @@
+Question 1
+s1 : 51.2 | s2 : 64 | s3 : 0 | 
+s4 : 64 | s5 : 80 | s6 : 100 | 
+Iterations : 5
+
+Question 2
+s1->s2->s5->s6->s3
+or
+s1->s4->s5->s6->s3
+
+Question 3
+Yes, If we change the immediate reward by multiplying it with a constant factor for example doubling each reward, the V* is also doubled, but π* remains unchanged.
+The optimal policy is calculated by the sequence of states with the highest utility.
+As long as the changes to the rewards are minor such that the state utility changes but the optimal sequence of states does not change the optimal policy will not change.
