@@ -14,6 +14,9 @@
 class grid{
 	private:
 		std::vector<std::vector<state>> world;
+		std::vector<state> optimal_states;
+		std::vector<state> optimal_states_2;
+		int itrnum;
 	
 	public:
 		grid();
@@ -21,9 +24,10 @@ class grid{
 		grid(std::vector<std::vector<state>> v);
 		bool converge(grid g);
 		void fill();
-		void printGrid(int num);
-		std::vector<state> optimal_policy(state s);
+		void printAnswers();
+		void optimal_policy();
 		state optimal_state(std::vector<state> v);
-		void to_string();
+		void to_string(int num);
+		void write_optimal(std::vector<state> v);	
 };
 #endif
